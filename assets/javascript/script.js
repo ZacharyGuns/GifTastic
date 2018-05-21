@@ -1,12 +1,12 @@
 console.log("hello world");
 
 $("button").on("click", function() {
-    // Grabbing and storing the data-animal property value from the button
-    var animal = $(this).attr("data-animal");
+    // Grabbing and storing the data-videoGame property value from the button
+    var videoGame = $(this).attr("data-videoGame");
 
-    // Constructing a queryURL using the animal name
+    // Constructing a queryURL using the videoGame name
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      animal + "&api_key=dc6zaTOxFJmzC&limit=10";
+      videoGame + "&api_key=dc6zaTOxFJmzC&limit=10";
 
     // Performing an AJAX request with the queryURL
     $.ajax({
@@ -25,22 +25,22 @@ $("button").on("click", function() {
         for (var i = 0; i < results.length; i++) {
 
           // Creating and storing a div tag
-          var animalDiv = $("<div>");
+          var videoGameDiv = $("<div>");
 
           // Creating a paragraph tag with the result item's rating
           var p = $("<p>").text("Rating: " + results[i].rating);
 
           // Creating and storing an image tag
-          var animalImage = $("<img>");
+          var videoGameImage = $("<img>");
           // Setting the src attribute of the image to a property pulled off the result item
-          animalImage.attr("src", results[i].images.fixed_height.url);
+          videoGameImage.attr("src", results[i].images.fixed_height.url);
 
-          // Appending the paragraph and image tag to the animalDiv
-          animalDiv.append(p);
-          animalDiv.append(animalImage);
+          // Appending the paragraph and image tag to the videoGameDiv
+          videoGameDiv.append(p);
+          videoGameDiv.append(videoGameImage);
 
-          // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-          $("#gifs-appear-here").prepend(animalDiv);
+          // Prependng the videoGameDiv to the HTML page in the "#gifs-appear-here" div
+          $("#gifs-appear-here").prepend(videoGameDiv);
         }
       });
   });

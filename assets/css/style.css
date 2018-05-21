@@ -1,0 +1,36 @@
+h1 {
+    width: 100%;
+    text-align: center;
+    background-color: purple;
+    color: white;
+    padding: 15px;
+}
+
+body {
+    background-color: none;
+}
+
+.container {
+    width: 100%;
+    margin: 0 5px;
+}
+
+button {
+    margin-top: 5px;
+}
+
+.row {
+    width: 100%;
+}
+
+.col-md-8 {
+    margin: 0;
+    padding: 15px;
+    border: 2px solid blue;
+}
+
+.col-md-4 {
+    margin: 0;
+    padding: 15px;
+    border: 2px solid red;
+}
