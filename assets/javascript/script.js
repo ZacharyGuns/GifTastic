@@ -1,46 +1,72 @@
 console.log("hello world");
 
+var games = ["League of Legends", "HearthStone", "Skyrim", "Borderlands 2"];
+
+function renderButtons() {
+
+  $("#gameButtons").empty();
+  for (var i = 0; i < games.length; i++) {
+    var a = $("<button>");
+    a.addClass("vgame");
+    a.attr("data-name", games[i]);
+    a.text(games[i]);
+    $("#gameButtons").append(a);
+  }
+}
+
+  $("#addGame").on("click", function(event) {
+    event.preventDefault();
+    var vgame = $("#gameSearch").val().trim();
+    games.push(vgame);
+    renderButtons();
+  });
+  renderButtons();
+
+
+
 $("button").on("click", function() {
-    // Grabbing and storing the data-videoGame property value from the button
-    var videoGame = $(this).attr("data-videoGame");
+    games = $(this).attr("");
+    vgame = $(this).attr("");
 
-    // Constructing a queryURL using the videoGame name
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      videoGame + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + games + "&api_key=bINogSMVSVr5pd0KJYXgscROOQWEtaGe&limit=10";
+ /*
+    $(".gif").on("click", function() {
+      var state = $(this).attr("data-state");
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      }
+      else if (state === "animate") {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+    });
+    */
 
-    // Performing an AJAX request with the queryURL
     $.ajax({
       url: queryURL,
       method: "GET"
-    })
-      // After data comes back from the request
-      .then(function(response) {
+    }).then(function(response) {
         console.log(queryURL);
 
         console.log(response);
-        // storing the data from the AJAX request in the results variable
+
         var results = response.data;
 
-        // Looping through each result item
         for (var i = 0; i < results.length; i++) {
 
-          // Creating and storing a div tag
-          var videoGameDiv = $("<div>");
+          var gamesDiv = $("<div>");
 
-          // Creating a paragraph tag with the result item's rating
           var p = $("<p>").text("Rating: " + results[i].rating);
 
-          // Creating and storing an image tag
-          var videoGameImage = $("<img>");
-          // Setting the src attribute of the image to a property pulled off the result item
-          videoGameImage.attr("src", results[i].images.fixed_height.url);
+          var gamesImage = $("<img>");
 
-          // Appending the paragraph and image tag to the videoGameDiv
-          videoGameDiv.append(p);
-          videoGameDiv.append(videoGameImage);
+          gamesImage.attr("src", results[i].images.fixed_height.url);
 
-          // Prependng the videoGameDiv to the HTML page in the "#gifs-appear-here" div
-          $("#gifs-appear-here").prepend(videoGameDiv);
-        }
-      });
-  });
+          gamesDiv.append(p);
+          gamesDiv.append(gamesImage);
+
+          $("#gifs-appear-here").prepend(gamesDiv);
+      }
+    });
+  });  
