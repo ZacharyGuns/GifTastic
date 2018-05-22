@@ -1,6 +1,6 @@
 console.log("hello world");
 
-var games = ["League of Legends", "HearthStone", "Skyrim", "Borderlands 2"];
+var games = ["League of Legends", "Hearthstone", "Skyrim", "Borderlands 2"];
 
 function renderButtons() {
 
@@ -24,12 +24,13 @@ function renderButtons() {
 
 
 
-$("button").on("click", function() {
-    games = $(this).attr("");
-    vgame = $(this).attr("");
+$("#gameButtons").on("click", 'button', function() {
+  var games = ["league-of-legends", "hearthstone", "skyrim", "borderlands-2"];
+    games = $(this).attr("data-name");
+    
 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + games + "&api_key=bINogSMVSVr5pd0KJYXgscROOQWEtaGe&limit=10";
- /*
+ 
     $(".gif").on("click", function() {
       var state = $(this).attr("data-state");
       if (state === "still") {
@@ -41,7 +42,7 @@ $("button").on("click", function() {
         $(this).attr("data-state", "still");
       }
     });
-    */
+    
 
     $.ajax({
       url: queryURL,
